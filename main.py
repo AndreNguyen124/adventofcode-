@@ -1,20 +1,27 @@
 def openFile():
     inputFile = open('text.txt', 'r')
-    depths = list(map(int, inputFile.read().splitlines()))
-    return depths
+    depths = list(inputFile.read().splitlines())
 
+    x = ' '.join(depths)
+    newList = x.split()
+    return newList
 
-def solution(list):
-    increased = 0
+def secondSolution(list):
+    forward = 0
+    down = 0
     for i in range(len(list)):
-        counter = i - 1
-        if list[i] > list[counter]:
-            increased += 1
-    print(increased)
-
+        count = i + 1
+        if list[i].__eq__("forward"):
+            value = int(list[count])
+            forward += value
+        elif list[i].__eq__("down"):
+            value = int(list[count])
+            down += value
+        elif list[i].__eq__("up"):
+            value = int(list[count])
+            down -= value
+    return forward, down
 
 if __name__ == '__main__':
-    pass
-    # print(openFile())
-    list = openFile()
-    solution(list)
+    print(openFile())
+    print(secondSolution(openFile()))
